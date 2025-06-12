@@ -1,5 +1,9 @@
 <template>
   <div class="retro-window">
+    <div class="window-title-bar">
+      WINDOW
+    </div>
+
     <div class="window-header">
       <span class="window-title">Yisus.site</span>
     </div>
@@ -43,7 +47,8 @@
   margin: 0 auto;
   /*background: #c0c0c0 url('/fondo-estrellas.png');*/
   border: 7px solid #0050EE;
-  font-family: 'Courier New', monospace;
+  border-radius: 10px;
+  font-family: 'agency fb', sans-serif;
   box-shadow: 0 0 12px black;
   display: flex;
   flex-direction: column;
@@ -52,18 +57,25 @@
 
 }
 
+.window-title-bar {
+  background-color: #0050EE;
+  color: white;
+  font-size: 24px;
+}
+
 .window-header {
  /* background-color: #0000aa;*/
-  color: white;
-  padding: 0.5rem;
+  color: rgb(0, 0, 0);
+  padding: 0.1rem;
   font-weight: bold;
+  background-color: rgba(200, 200, 200, 0.6);
   font-size: 58px;
 }
 
 .nav-bar {
   display: flex;
   justify-content: space-around;
-  background: #d3d3d3;
+  background: #0050EE;
   padding: 0.5rem;
 }
 

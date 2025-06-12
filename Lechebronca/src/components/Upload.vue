@@ -6,7 +6,7 @@
     <input type="number" v-model.number="fechaPublicacion" placeholder="Año de publicación" />
     <button @click="uploadImage">Subir</button>
 
-    <h2>Imágenes subidas</h2>
+    <h2>Imágenes subidaaaaaaas</h2>
     <ul>
       <li v-for="img in images" :key="img.id">
         <img :src="backendUrl + img.filepath" alt="Imagen" width="100" />
@@ -26,7 +26,7 @@ export default {
       filename: '',
       fechaPublicacion: '', // bound as number below
       images: [],
-      backendUrl: 'https://lechebronca-backend-production-b77f.up.railway.app' 
+      backendUrl: 'https://lechebronca-backend-production-b77f.up.railway.app'
       // http://localhost:3000 --- local
       // https://lechebronca-backend-production-b77f.up.railway.app --- web
     };

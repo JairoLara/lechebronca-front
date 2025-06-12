@@ -1,7 +1,13 @@
 <template>
   <div class="retro-window">
+
     <div class="window-title-bar">
       WINDOW
+      <div class="window-controls">
+        <button title="Minimizar">_</button>
+        <button title="Maximizar">☐</button>
+        <button title="Cerrar" style="background-color: red;">✕</button>
+      </div>
     </div>
 
     <div class="window-header">
@@ -63,6 +69,30 @@
   font-size: 24px;
 }
 
+.window-controls {
+  float: right;
+  display: flex;
+
+}
+.window-controls button {
+  display: flex;
+  justify-content: center;
+  border-radius: 3px;
+  align-items: center;
+  background-color: #4e6dab;
+  color: white;
+  border: white 2px solid;
+  padding: 0.5rem;
+  margin: 2px;
+  cursor: pointer;
+  font-size: 18px;
+  width: 30px;
+  height: 30px;
+}
+.window-controls button:hover {
+  background-color: #003bb5;
+}
+
 .window-header {
  /* background-color: #0000aa;*/
   color: rgb(0, 0, 0);
@@ -77,14 +107,21 @@
   justify-content: space-around;
   background: #0050EE;
   padding: 0.5rem;
+  box-shadow: 0 -7px 6px rgba(0, 0, 0, 0.2);
 }
 
 .nav-bar button {
+  display: flex;
+  justify-content: center;
   background: white;
-  border: 2px outset #aaa;
+  border: 5px outset #8d8d8d;
+  border-radius: 9px;
   padding: 0.3rem 0.7rem;
   font-weight: bold;
   cursor: pointer;
+  font-size: 24px;
+  width: 145px;
+  font-family: 'agency fb', sans-serif;
 }
 
 .window-body {

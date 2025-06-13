@@ -3,11 +3,16 @@ import Upload from '../components/Upload.vue';
 import HomeView from '../views/HomeView.vue';
 import AdminLogin from '@/views/AdminLogin.vue';
 import AdminPanel from '@/views/AdminPanel.vue';
+import WelcomeView from '@/views/WelcomeView.vue';
 
 const routes = [
   { path: '/',
     name: 'Home',
     component: HomeView
+  },
+  { path: '/welcome',
+    name: 'welcome',
+    component: WelcomeView
   },
   { path: '/upload',
     name: 'upload',

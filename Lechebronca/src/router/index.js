@@ -5,10 +5,15 @@ import AdminLogin from '@/views/AdminLogin.vue';
 import AdminPanel from '@/views/AdminPanel.vue';
 import ProjectsView from '@/views/ProjectsView.vue';
 
+
 const routes = [
   { path: '/',
     name: 'Home',
     component: HomeView
+  },
+  { path: '/welcome',
+    name: 'welcome',
+    component: WelcomeView
   },
   { path: '/upload',
     name: 'upload',

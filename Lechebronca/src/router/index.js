@@ -13,7 +13,7 @@ const routes = [
     name: 'upload',
     component: Upload
   },
-  { path: '/Admin',
+  { path: '/admin',
     name: 'admin',
     component: AdminLogin
   },

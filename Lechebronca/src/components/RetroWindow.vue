@@ -13,7 +13,7 @@
     <div class="window-header">
       <span class="window-title">Yisus.site</span>
     </div>
-
+    <RouterLink to="/admin">h</RouterLink>
     <nav class="nav-bar">
       <button>HOME</button>
       <button>ABOUT</button>

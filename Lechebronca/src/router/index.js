@@ -3,7 +3,8 @@ import Upload from '../components/Upload.vue';
 import HomeView from '../views/HomeView.vue';
 import AdminLogin from '@/views/AdminLogin.vue';
 import AdminPanel from '@/views/AdminPanel.vue';
-import WelcomeView from '@/views/WelcomeView.vue';
+import ProjectsView from '@/views/ProjectsView.vue';
+
 
 const routes = [
   { path: '/',
@@ -26,6 +27,11 @@ const routes = [
     name: 'proyectos',
     component: AdminPanel
   },
+  {
+    path: '/projects',
+    name: 'projects',
+    component: ProjectsView
+  }
 ];
 
 const router = createRouter({

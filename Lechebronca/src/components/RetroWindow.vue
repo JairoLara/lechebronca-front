@@ -13,7 +13,7 @@
     <div class="window-header">
       <span class="window-title">Yisus.site</span>
     </div>
-
+    <RouterLink to="/admin">h</RouterLink>
     <nav class="nav-bar">
       <button>HOME</button>
       <button>ABOUT</button>
@@ -88,7 +88,6 @@
   font-size: 18px;
   width: 30px;
   height: 30px;
-  font-weight: bold;
 }
 .window-controls button:hover {
   background-color: #003bb5;
@@ -123,11 +122,6 @@
   font-size: 24px;
   width: 145px;
   font-family: 'agency fb', sans-serif;
-}
-
-.nav-bar button:hover {
-  background: #c0c0c0;
-  border: 5px inset #8d8d8d;
 }
 
 .window-body {

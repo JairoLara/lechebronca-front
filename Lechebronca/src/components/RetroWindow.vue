@@ -11,13 +11,13 @@
     </div>
 
     <div class="window-header">
-      <span class="window-title">Yisus.site</span>
+      <span class="window-title">LECHEBRONCA</span>
     </div>
     <RouterLink to="/admin">h</RouterLink>
     <nav class="nav-bar">
       <button>HOME</button>
       <button>ABOUT</button>
-      <button>PROJECTS</button>
+      <button @click="irAProjects">PROJECTS</button>
       <button>BLOG</button>
     </nav>
 
@@ -43,7 +43,13 @@
 </template>
 
 <script setup>
-// No script needed unless vas a usar props o slots con nombre
+import { RouterLink, useRouter } from 'vue-router';
+const router = useRouter();
+
+function irAProjects() {
+  router.push('/projects');
+
+}
 </script>
 
 <style scoped>
@@ -122,6 +128,10 @@
   font-size: 24px;
   width: 145px;
   font-family: 'agency fb', sans-serif;
+}
+.nav-bar button:hover {
+  background: #c0c0c0;
+  border: 5px inset #8d8d8d;
 }
 
 .window-body {

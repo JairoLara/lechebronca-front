@@ -1,13 +1,15 @@
 <template>
-  <div class="admin-login">
-    <p>Código para acceder</p>
+  <div class="contenedor-prin">
+    <div class="admin-login">
+      <p class="texto">El siguiente destino esta protegido por un código, ingresa el código correcto.</p>
 
-    <form @submit.prevent="entrar">
-      <input v-model="codigo" type="password" placeholder="Código" required />
-      <button type="submit">Entrar</button>
-    </form>
+      <form class="campos" @submit.prevent="entrar">
+        <input class="codigo" v-model="codigo" type="password" placeholder="Código" required />
+        <button class="boton" type="submit">Entrar</button>
+      </form>
 
-    <p>{{ mensaje }}</p>
+      <p class="mensaje">{{ mensaje }}</p>
+    </div>
   </div>
 </template>
 
@@ -19,8 +21,6 @@ export default {
       codigo: '',
       mensaje: '',
       backendUrl: 'https://lechebronca-backend-production-b77f.up.railway.app'
-      // 'http://localhost:3000'
-      //  https://lechebronca-backend-production-b77f.up.railway.app
     };
   },
   methods: {
@@ -47,9 +47,94 @@ export default {
 </script>
 
 <style scoped>
+.contenedor-prin {
+  height: 100vh;
+  background-image: url('@/assets/pass_img.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mensaje{
+  color: darkred;
+}
+
+.codigo{
+  font-size: 1.2rem;
+  outline: none;
+  padding: 12px 16px;
+  width: 50%;
+  border: none;
+  font-family: 'agency fb', sans-serif;
+}
+.boton{
+  background-image: url('@/assets/OK_btn.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  text-indent: -9999px;
+  background-size: 100px 50px;
+  width: 100px;
+  height: 50px;
+  font-size: 1.2rem; 
+  padding: 12px 16px;
+  cursor: pointer;
+}
+.boton:hover {
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.3);
+}
+
 .admin-login {
+  padding: 30px;
+  text-align: center;
+  width: 90%;
+  color: black;
+  font-size: 35px;
+  font-family: 'agency fb', sans-serif;
   max-width: 400px;
-  margin: auto;
-  padding: 20px;
+  
+}
+
+@media (max-width: 480px) {
+.contenedor-prin {
+  height: 100vh;
+  background-image: url('@/assets/pass_img.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+  .texto{
+  font-size: 25px;
+}
+  .admin-login {
+    font-size: 1rem;
+    padding: 20px;
+  }
+
+  .campos {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem; 
+  }
+  .codigo {
+    outline: none;
+    text-align: center;
+    font-size: 1rem;
+    max-width: 300px;
+    width: 100%;
+    padding: 10px 14px;
+  }
+
+  .boton {
+    background-size: 80px 40px;
+    left: 50%;
+    
+    width: 80px;
+    height: 40px;
+  }
 }
 </style>

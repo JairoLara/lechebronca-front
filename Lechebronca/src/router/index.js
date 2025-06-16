@@ -5,6 +5,8 @@ import AdminLogin from '@/views/AdminLogin.vue';
 import AdminPanel from '@/views/AdminPanel.vue';
 import WelcomeView from '@/views/WelcomeView.vue';
 import ProjectsView from '@/views/ProjectsView.vue';
+import BlogView from '@/views/BlogView.vue';
+
 
 
 const routes = [
@@ -32,6 +34,11 @@ const routes = [
     path: '/projects',
     name: 'projects',
     component: ProjectsView
+  },
+  {
+    path: '/blog',
+    name: 'blog',
+    component: BlogView
   }
 ];
 

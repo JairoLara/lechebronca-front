@@ -18,7 +18,7 @@
       <button @click="irAHome">HOME</button>
       <button>ABOUT</button>
       <button @click="irAProjects">PROJECTS</button>
-      <button>BLOG</button>
+      <button @click="irABlog">BLOG</button>
     </nav>
 
     <div class="window-body">
@@ -37,6 +37,9 @@ function irAProjects() {
 }
 function irAHome() {
   router.push('/');
+}
+function irABlog() {
+  router.push('/blog');
 }
 </script>
 

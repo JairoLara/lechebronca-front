@@ -6,18 +6,17 @@
      <div class="window-controls">
         <button class="minimizar">_</button>
         <button class="maximizar">☐</button>
-        <button @click="irAHome" class="cerrar">✕</button>
+        <button class="cerrar">✕</button>
       </div>
     </div>
     <div class="projects">
-
-         <ul>
+        <ul>
           <li v-for="img in images" :key="img.id">
-            <img :src="backendUrl + img.filepath" alt="Imagen" width="100" />
-          </li>
+  <router-link :to="`/project/${img.id}`">
+    <img :src="backendUrl + img.filepath" alt="Imagen" width="100" />
+  </router-link>
+</li>
         </ul>
-
-
       </div>
     </div>
   </RetroWindow>
@@ -120,7 +119,7 @@ onMounted(fetchImages);
 .projects {
   display: grid;
   gap: 10px;
-  
+
   margin: 4px;
   flex: 1;
   overflow-y: auto;

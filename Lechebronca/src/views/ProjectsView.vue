@@ -12,9 +12,10 @@
     <div class="projects">
         <ul>
           <li v-for="img in images" :key="img.id">
-            <img :src="backendUrl + img.filepath" alt="Imagen" width="100" />
-
-          </li>
+  <router-link :to="`/project/${img.id}`">
+    <img :src="backendUrl + img.filepath" alt="Imagen" width="100" />
+  </router-link>
+</li>
         </ul>
       </div>
     </div>

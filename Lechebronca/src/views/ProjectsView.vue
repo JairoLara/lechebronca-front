@@ -6,16 +6,18 @@
      <div class="window-controls">
         <button class="minimizar">_</button>
         <button class="maximizar">☐</button>
-        <button class="cerrar">✕</button>
+        <button @click="irAHome" class="cerrar">✕</button>
       </div>
     </div>
     <div class="projects">
-        <ul>
+
+         <ul>
           <li v-for="img in images" :key="img.id">
             <img :src="backendUrl + img.filepath" alt="Imagen" width="100" />
-
           </li>
         </ul>
+
+
       </div>
     </div>
   </RetroWindow>
@@ -25,6 +27,12 @@
 import { ref, onMounted } from 'vue'
 import RetroWindow from '@/components/RetroWindow.vue'
 import axios from 'axios'
+import { useRouter } from 'vue-router'
+const router = useRouter();
+
+function irAHome() {
+  router.push('/');
+}
 
 const images = ref([]);
 
@@ -110,8 +118,9 @@ onMounted(fetchImages);
   background: linear-gradient(to bottom, #ff0000, #a52121, #cca8a8);
 }
 .projects {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  gap: 10px;
+  
   margin: 4px;
   flex: 1;
   overflow-y: auto;
@@ -120,12 +129,24 @@ onMounted(fetchImages);
   padding: 20px;
   background-color: #ffffff;
   width: 70%;
-  right: 0;
-  position: absolute;
   top: 40px;
+  margin-left: auto;
 }
+
 .projects ul {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
+  margin: 0;
 }
+.projects li {
+  margin: 10px 0;
+  display: inline-block;
+  margin-right: 10px;
+  padding: 5px;
+}
+.projects img {
+  max-height: auto;
+  width: 400px;
+}
+
 </style>

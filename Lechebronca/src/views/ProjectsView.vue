@@ -1,43 +1,43 @@
 <template>
   <RetroWindow>
     <div class="projects-content">
-          <div class="projects-window">
-      <div class="window-title-bar">
-        PROJECTS
-        <div class="window-controls">
-          <button class="minimizar">_</button>
-          <button class="maximizar">☐</button>
-          <button @click="irAHome" class="cerrar">✕</button>
-        </div>
-      </div>
-
-      <!-- NUEVO contenedor para alinear horizontalmente -->
-      <div class="content-wrapper">
-        <div class="years">
-          <ul>
-            <li
-              v-for="year in uniqueYears"
-              :key="year"
-              @click="filterByYear(year)"
-              :class="{ active: year === selectedYear }"
-            >
-              {{ year }}
-            </li>
-          </ul>
+      <div class="projects-window">
+        <div class="window-title-bar">
+          PROJECTS
+          <div class="window-controls">
+            <button class="minimizar">_</button>
+            <button class="maximizar">☐</button>
+            <button @click="irAHome" class="cerrar">✕</button>
+          </div>
         </div>
 
-        <div class="projects">
-          <h2>{{ selectedYear }}</h2>
-          <ul>
-            <li v-for="img in filteredImages" :key="img.id">
-              <router-link :to="`/project/${img.id}`">
-                <img :src="backendUrl + img.filepath" alt="Imagen" width="100" />
-              </router-link>
-            </li>
-          </ul>
+        <!-- NUEVO contenedor para alinear horizontalmente -->
+        <div class="content-wrapper">
+          <div class="years">
+            <ul>
+              <li
+                v-for="year in uniqueYears"
+                :key="year"
+                @click="filterByYear(year)"
+                :class="{ active: year === selectedYear }"
+              >
+                {{ year }}
+              </li>
+            </ul>
+          </div>
+
+          <div class="projects">
+            <h2>{{ selectedYear }}</h2>
+            <ul>
+              <li v-for="img in filteredImages" :key="img.id">
+                <router-link :to="`/project/${img.id}`">
+                  <img :src="backendUrl + img.filepath" alt="Imagen" width="100" />
+                </router-link>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   </RetroWindow>
 </template>
@@ -71,8 +71,8 @@ const fetchImages = async () => {
 
 const uniqueYears = computed(() => {
   const years = images.value
-    .filter(img => img.fechaPublicacion)
-    .map(img => img.fechaPublicacion)
+    .filter((img) => img.fechaPublicacion)
+    .map((img) => img.fechaPublicacion)
 
   return Array.from(new Set(years)).sort((a, b) => a - b)
 })
@@ -83,14 +83,13 @@ const filterByYear = (year) => {
 
 const filteredImages = computed(() => {
   if (!selectedYear.value) return images.value
-  return images.value.filter(img => img.fechaPublicacion === selectedYear.value)
+  return images.value.filter((img) => img.fechaPublicacion === selectedYear.value)
 })
 
 onMounted(fetchImages)
 </script>
 
 <style scoped>
-
 .projects-content {
   padding: 1rem;
 }
@@ -106,7 +105,6 @@ onMounted(fetchImages)
   font-family: 'agency fb', sans-serif;
   box-shadow: 0 0 12px black;
   background-color: #ece9d8;
-
   position: relative;
 }
 
@@ -157,7 +155,6 @@ onMounted(fetchImages)
   background: linear-gradient(to bottom, #ff0000, #a52121, #cca8a8);
 }
 
-
 .content-wrapper {
   display: flex;
   flex-direction: row;
@@ -168,17 +165,28 @@ onMounted(fetchImages)
 .projects {
   flex: 1;
   margin: 4px;
-  overflow-y: auto;
   padding: 20px;
   border: 4px solid #0050ee;
   background-color: #ffffff;
   width: 70%;
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
 }
 
 .projects ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1; /* hace que el scroll solo se aplique aquí */
+
+  padding: 10px;
+  scroll-behavior: smooth;
 }
 .projects li {
   display: inline-block;
@@ -192,17 +200,34 @@ onMounted(fetchImages)
   font-size: 54px;
   text-decoration: underline;
   animation: color 2.3s infinite;
+  flex-shrink: 0;
 }
 
 @keyframes color {
-  0%   { color: red; }
-  14%  { color: orange; }
-  28%  { color: yellow; }
-  42%  { color: green; }
-  57%  { color: blue; }
-  71%  { color: indigo; }
-  85%  { color: violet; }
-  100% { color: red; }
+  0% {
+    color: red;
+  }
+  14% {
+    color: orange;
+  }
+  28% {
+    color: yellow;
+  }
+  42% {
+    color: green;
+  }
+  57% {
+    color: blue;
+  }
+  71% {
+    color: indigo;
+  }
+  85% {
+    color: violet;
+  }
+  100% {
+    color: red;
+  }
 }
 
 .years {
@@ -215,7 +240,9 @@ onMounted(fetchImages)
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: inset -3px -3px 0px #ffffff, inset 3px 3px 0px #7d7d7d;
+  box-shadow:
+    inset -3px -3px 0px #ffffff,
+    inset 3px 3px 0px #7d7d7d;
 }
 
 .years ul {
@@ -232,7 +259,9 @@ onMounted(fetchImages)
   border: 2px solid #777;
   font-size: 18px;
   cursor: pointer;
-  box-shadow: inset -2px -2px 0px #fff, inset 2px 2px 0px #555;
+  box-shadow:
+    inset -2px -2px 0px #fff,
+    inset 2px 2px 0px #555;
 }
 
 .years ul li.active,
@@ -241,7 +270,95 @@ onMounted(fetchImages)
   color: white;
   border-color: #ffffff;
   font-weight: bold;
-  box-shadow: inset -2px -2px 0px #cccccc, inset 2px 2px 0px #0018aa;
+  box-shadow:
+    inset -2px -2px 0px #cccccc,
+    inset 2px 2px 0px #0018aa;
   transform: translateY(-1px);
+}
+
+/* Retro estilo del scroll */
+.projects ul::-webkit-scrollbar {
+  width: 14px;
+}
+.projects ul::-webkit-scrollbar-track {
+  background: #c0c0c0;
+  border: 2px inset #ffffff;
+}
+.projects ul::-webkit-scrollbar-thumb {
+  background-color: #808080;
+  border: 2px outset #dcdcdc;
+}
+.projects ul::-webkit-scrollbar-thumb:hover {
+  background-color: #0050ee;
+}
+
+.projects ul {
+  scrollbar-color: rgb(255, 255, 255) #bdbcbc;
+  scrollbar-width: thin;
+}
+
+.projects li {
+  display: inline-block;
+  margin: 10px;
+}
+.projects img {
+  width: 230px;
+}
+
+@media (max-width: 480px) {
+  .content-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .years {
+    margin: 10px auto;
+    width: 90%;
+    flex-direction: row;
+    justify-content: center;
+    overflow-x: auto;
+    gap: 10px;
+  }
+
+  .years ul {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .years ul li {
+    flex: 0 0 auto;
+    font-size: 16px;
+    padding: 10px;
+    min-width: 50px;
+  }
+
+  .projects {
+    width: 100%;
+    padding: 10px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    overflow-y: auto; /* Agrega scroll si es necesario */
+    border: none;
+    background-color: #ece9d8;
+  }
+
+  .projects img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .projects h2 {
+    font-size: 36px;
+  }
+
+  .projects ul {
+    overflow-y: auto;
+    max-height: 60vh;
+    padding-right: 8px;
+  }
 }
 </style>

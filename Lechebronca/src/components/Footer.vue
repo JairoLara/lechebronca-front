@@ -17,7 +17,6 @@
 
 <style>
 .window-footer {
-
   background-color: #0066ff;
   color: white;
   padding: 1rem;

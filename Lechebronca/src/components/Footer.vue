@@ -17,13 +17,14 @@
 
 <style>
 .window-footer {
+
   background-color: #0066ff;
   color: white;
   padding: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: fixed;
+  position: relative;
   bottom: 0;
   width: 100%;
   max-width: 850px;

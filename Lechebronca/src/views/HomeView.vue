@@ -1,6 +1,7 @@
 <template>
   <RetroWindow>
-    <h2>👋 ¡Bienvenid@ a mi sitio retro!</h2>
+    <div class="home-info">
+      <h2>👋 ¡Bienvenid@ a mi sitio retro!</h2>
     <p>Este sitio está inspirado en la era de Windows 98 con un toque de humor y creatividad espacial.</p>
     Me gustan los party's y las desveladas
 Lunes a Domingo y toda la semana
@@ -49,7 +50,10 @@ lleven a mi entierro música de banda
 echenme loquera y una de buchanan's
 por si hay otra vida...
 seguir la parranda...
-    <Footer />
+    </div>
+
+<Footer />
+
   </RetroWindow>
 </template>
 
@@ -57,3 +61,12 @@ seguir la parranda...
 import Footer from '@/components/Footer.vue';
 import RetroWindow from '@/components/RetroWindow.vue';
 </script>
+
+<style scoped>
+
+.home-info{
+
+  padding: 1rem;
+}
+
+</style>

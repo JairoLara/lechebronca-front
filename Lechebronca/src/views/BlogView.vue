@@ -6,7 +6,7 @@
      <div class="window-controls">
         <button class="minimizar">_</button>
         <button class="maximizar">☐</button>
-        <button class="cerrar">✕</button>
+        <button @click="irAHome" class="cerrar">✕</button>
       </div>
     </div>
         <div class="contenido" style="padding: 20px;">
@@ -25,7 +25,12 @@
 <script setup>
 
 import RetroWindow from '@/components/RetroWindow.vue'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
+function irAHome() {
+  router.push('/')
+}
 
 </script>
 

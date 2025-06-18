@@ -25,5 +25,15 @@ href="https://webneko.net">Neko</a></h1>
   });
 </script>
 
+<audio id="bg-music" src="/Sunshine, Lollipops And Rainbows-yt.savetube.me.mp3" autoplay loop></audio>
+
+<script>
+  document.addEventListener('click', () => {
+    const audio = document.getElementById("bg-music");
+    if (audio && audio.paused) {
+      audio.play();
+    }
+  }, { once: true });
+</script>
   </body>
 </html>

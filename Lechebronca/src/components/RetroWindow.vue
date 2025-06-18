@@ -46,6 +46,7 @@ function irABlog() {
 <style scoped>
 .retro-window {
   width: 100%;
+  height: 100%;
   max-width: 850px;
   margin: 0 auto;
   border: 7px solid #0050EE;
@@ -54,9 +55,7 @@ function irABlog() {
   box-shadow: 0 0 12px black;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
   position: relative;
-
 }
 
 .window-title-bar {
@@ -147,7 +146,7 @@ function irABlog() {
 
 .window-body {
   flex: 1;
-  padding: 1rem;
+ 
   background-color: rgba(200, 200, 200, 0.6);
   color: black;
   overflow-y: auto;

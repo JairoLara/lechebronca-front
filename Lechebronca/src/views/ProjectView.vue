@@ -1,12 +1,18 @@
 <template>
-  <div v-if="proyecto">
-    <h2>{{ proyecto.title }}</h2>
-    <img :src="backendUrl + proyecto.filepath" alt="Imagen del proyecto" width="300" />
-    <p>{{ proyecto.description }}</p>
-  </div>
+  <RetroWindow>
+    <div class="ventana">
+      <div v-if="proyecto">
+        <h2>{{ proyecto.title }}</h2>
+        <img :src="backendUrl + proyecto.filepath" alt="Imagen del proyecto" width="300" />
+      </div>
+      <Comentarios />
+    </div>
+  </RetroWindow>
 </template>
 
 <script setup>
+import RetroWindow from '@/components/RetroWindow.vue'
+import Comentarios from '@/components/ComentsComp.vue'
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import axios from 'axios'
@@ -25,3 +31,18 @@ onMounted(async () => {
   }
 })
 </script>
+
+<style scoped>
+.ventana{
+  display: flex;
+  border: 7px solid #0050EE;
+  width: 50vh;
+  margin: 1rem;
+  padding: 20px;
+  border-radius: 10px;
+  font-family: 'agency fb', sans-serif;
+  box-shadow: 0 0 12px black;
+  background-color: #ECE9D8;
+  justify-content: center;
+}
+</style>

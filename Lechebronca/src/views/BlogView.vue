@@ -15,7 +15,9 @@
             <p>Descubre mi pagina externa aqui...</p>
                 <div class="gifs">
                     <img src="@/assets/youtube.gif"  width="88" height="31" alt="GIF animado">
-                    <img src="@/assets/fb8c0d57445746a.gif" width="88" height="31" alt="GIF animado">
+                    <a href="https://productora-galindoavila.com/" target="_blank" rel="noopener noreferrer">
+  <img src="@/assets/fb8c0d57445746a.gif" width="88" height="31" alt="GIF animado">
+</a>
                 </div>
         </div>
     </div>

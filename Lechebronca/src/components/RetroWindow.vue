@@ -124,6 +124,8 @@ function irABlog() {
   background: #0050EE;
   padding: 0.5rem;
   box-shadow: 0 -7px 6px rgba(0, 0, 0, 0.2);
+  position: relative;
+
 }
 
 .nav-bar button {
@@ -137,16 +139,25 @@ function irABlog() {
   cursor: pointer;
   font-size: 24px;
   width: 145px;
+  max-width: 100%;
   font-family: 'agency fb', sans-serif;
 }
+
+@media (max-width: 480px) {
+  .nav-bar button {
+    font-size: 16px;
+    width: 100px;
+  }
+}
+
 .nav-bar button:hover {
   background: #c0c0c0;
   border: 5px inset #8d8d8d;
 }
 
+
 .window-body {
   flex: 1;
- 
   background-color: rgba(200, 200, 200, 0.6);
   color: black;
   overflow-y: auto;

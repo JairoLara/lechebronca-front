@@ -21,18 +21,18 @@
       <span>Mes:</span>
       <select v-model="mesPublicacion" class="retro-input">
         <option disabled value="">Selecciona el mes</option>
-        <option>enero</option>
-        <option>febrero</option>
-        <option>marzo</option>
-        <option>abril</option>
-        <option>mayo</option>
-        <option>junio</option>
-        <option>julio</option>
-        <option>agosto</option>
-        <option>septiembre</option>
-        <option>octubre</option>
-        <option>noviembre</option>
-        <option>diciembre</option>
+        <option>Enero</option>
+        <option>Febrero</option>
+        <option>Marzo</option>
+        <option>Abril</option>
+        <option>Mayo</option>
+        <option>Junio</option>
+        <option>Julio</option>
+        <option>Agosto</option>
+        <option>Septiembre</option>
+        <option>Octubre</option>
+        <option>Noviembre</option>
+        <option>Diciembre</option>
       </select>
     </label>
 

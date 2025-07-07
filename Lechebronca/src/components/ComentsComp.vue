@@ -45,7 +45,7 @@ onMounted(fetchComments)
           <input
             v-model="newComment"
             type="text"
-            placeholder="Escribe tu comentario..."
+            placeholder="Comentario:"
             class="input"
           />
           <button type="submit" class="btn">Enviar</button>
@@ -55,10 +55,9 @@ onMounted(fetchComments)
 
 <style scoped>
 .comentarios {
-  position: absolute;
   bottom: 10px;
   right: 10px;
-  background: #ece9d8;
+  background: none;
   border: 4px solid #0050EE;
   padding: 1rem;
   font-family: 'agency fb', sans-serif;
@@ -102,5 +101,47 @@ form {
 
 ul {
   padding-left: 0;
+}
+
+@media (max-width: 680px) {
+  .comentarios {
+    display: flex;
+    padding: 1px;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 4px;
+    width: 100%;
+    max-width: none;
+    flex-wrap: wrap;
+  }
+
+  .com{
+    background-color: bisque;
+    padding: 10px;
+    width: 7rem;
+    border: 4px solid #0050EE;
+  }
+
+  ul {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+  form {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+  }
+  .btn{
+    width: 160px;
+  }
+
+  .input {
+    width: 160px;
+  }
 }
 </style>

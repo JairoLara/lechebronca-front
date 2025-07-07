@@ -1,9 +1,11 @@
 <template>
   <RetroWindow>
-    <div class="ventana">
-      <div v-if="proyecto">
-        <h2>{{ proyecto.title }}</h2>
-        <img :src="backendUrl + proyecto.filepath" alt="Imagen del proyecto" width="300" />
+    <div class="contenedor">
+      <div class="ventana">
+        <div v-if="proyecto">
+          <h2>{{ proyecto.title }}</h2>
+          <img :src="backendUrl + proyecto.filepath" alt="Imagen del proyecto" width="300" />
+        </div>
       </div>
       <Comentarios />
     </div>
@@ -33,6 +35,17 @@ onMounted(async () => {
 </script>
 
 <style scoped>
+.contenedor {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.comentarios {
+  max-width: 300px;
+}
 .ventana{
   display: flex;
   border: 7px solid #0050EE;
@@ -44,5 +57,12 @@ onMounted(async () => {
   box-shadow: 0 0 12px black;
   background-color: #ECE9D8;
   justify-content: center;
+}
+
+@media (max-width: 680px) {
+  .contenedor {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 </style>

@@ -39,23 +39,22 @@ onMounted(async () => {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 2rem;
-  padding: 1rem;
+
 }
 
 .comentarios {
-  max-width: 300px;
+  width: 40%;
+
+  max-width: 600px;
 }
 .ventana{
-  display: flex;
-  border: 7px solid #0050EE;
-  width: 50vh;
-  margin: 1rem;
-  padding: 20px;
-  border-radius: 10px;
+  border: 5px solid #0050EE;
+  width: 60vh;
+  
+  padding: 10px;
   font-family: 'agency fb', sans-serif;
   box-shadow: 0 0 12px black;
-  background-color: #ECE9D8;
+  background-color: #ffffff;
   justify-content: center;
 }
 
@@ -64,5 +63,8 @@ onMounted(async () => {
     flex-direction: column;
     align-items: center;
   }
+}
+.ventana h2 {
+  font-size: 2.3rem;
 }
 </style>

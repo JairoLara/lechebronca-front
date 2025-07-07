@@ -3,7 +3,7 @@
     <div class="contenedor">
       <div class="ventana">
         <div v-if="proyecto">
-          <h2>{{ proyecto.title }}</h2>
+          <h2>{{ proyecto.filename }}</h2>
           <img :src="backendUrl + proyecto.filepath" alt="Imagen del proyecto" width="300" />
         </div>
       </div>

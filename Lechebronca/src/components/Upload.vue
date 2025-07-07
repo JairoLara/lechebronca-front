@@ -4,6 +4,24 @@
     <input type="file" @change="onFileChange" />
     <input type="text" v-model="filename" placeholder="Nombre de la imagen" />
     <input type="number" v-model.number="fechaPublicacion" placeholder="Año de publicación" />
+
+    <!-- Input de selección de mes -->
+    <select v-model="mesPublicacion">
+      <option disabled value="">Selecciona el mes</option>
+      <option>enero</option>
+      <option>febrero</option>
+      <option>marzo</option>
+      <option>abril</option>
+      <option>mayo</option>
+      <option>junio</option>
+      <option>julio</option>
+      <option>agosto</option>
+      <option>septiembre</option>
+      <option>octubre</option>
+      <option>noviembre</option>
+      <option>diciembre</option>
+    </select>
+
     <button @click="uploadImage">Subir</button>
 
     <h2>Imágenes subidaaaaaaas</h2>
@@ -11,6 +29,7 @@
       <li v-for="img in images" :key="img.id">
         <img :src="backendUrl + img.filepath" alt="Imagen" width="100" />
         {{ img.filename }} - Año: {{ img.fechaPublicacion || 'Sin año' }}
+        {{ img.mesPublicacion }}
       </li>
     </ul>
   </div>
@@ -24,7 +43,8 @@ export default {
     return {
       selectedFile: null,
       filename: '',
-      fechaPublicacion: '', // bound as number below
+      fechaPublicacion: '',
+      mesPublicacion: '', // ← NUEVO
       images: [],
       backendUrl: 'https://lechebronca-backend-production-b77f.up.railway.app'
       // http://localhost:3000 --- local
@@ -36,7 +56,7 @@ export default {
       this.selectedFile = event.target.files[0];
     },
     async uploadImage() {
-      if (!this.selectedFile || !this.filename || !this.fechaPublicacion) {
+      if (!this.selectedFile || !this.filename || !this.fechaPublicacion || !this.mesPublicacion) {
         alert('Debes completar todos los campos');
         return;
       }
@@ -53,6 +73,7 @@ export default {
       formData.append('image', this.selectedFile);
       formData.append('filename', this.filename.trim());
       formData.append('fechaPublicacion', parsedYear);
+      formData.append('mesPublicacion', this.mesPublicacion); // ← NUEVO
 
       try {
         await axios.post(this.backendUrl + '/images', formData, {
@@ -64,6 +85,7 @@ export default {
         alert('Imagen subida correctamente');
         this.filename = '';
         this.fechaPublicacion = '';
+        this.mesPublicacion = '';
         this.selectedFile = null;
         this.fetchImages();
       } catch (error) {

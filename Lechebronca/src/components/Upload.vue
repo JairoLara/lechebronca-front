@@ -1,37 +1,42 @@
 <template>
-  <div>
-    <h2>Subir Imagen</h2>
-    <input type="file" @change="onFileChange" />
-    <input type="text" v-model="filename" placeholder="Nombre de la imagen" />
-    <input type="number" v-model.number="fechaPublicacion" placeholder="Año de publicación" />
+  <div class="upload-container">
+    <h2 class="retro-title">Subir Imagen</h2>
 
-    <!-- Input de selección de mes -->
-    <select v-model="mesPublicacion">
-      <option disabled value="">Selecciona el mes</option>
-      <option>enero</option>
-      <option>febrero</option>
-      <option>marzo</option>
-      <option>abril</option>
-      <option>mayo</option>
-      <option>junio</option>
-      <option>julio</option>
-      <option>agosto</option>
-      <option>septiembre</option>
-      <option>octubre</option>
-      <option>noviembre</option>
-      <option>diciembre</option>
-    </select>
+    <label class="retro-label">
+      <span>Archivo:</span>
+      <input type="file" @change="onFileChange" class="retro-input" />
+    </label>
 
-    <button @click="uploadImage">Subir</button>
+    <label class="retro-label">
+      <span>Nombre:</span>
+      <input type="text" v-model="filename" placeholder="Nombre de la imagen" class="retro-input" />
+    </label>
 
-    <h2>Imágenes subidaaaaaaas</h2>
-    <ul>
-      <li v-for="img in images" :key="img.id">
-        <img :src="backendUrl + img.filepath" alt="Imagen" width="100" />
-        {{ img.filename }} - Año: {{ img.fechaPublicacion || 'Sin año' }}
-        {{ img.mesPublicacion }}
-      </li>
-    </ul>
+    <label class="retro-label">
+      <span>Año:</span>
+      <input type="number" v-model.number="fechaPublicacion" placeholder="Año de publicación" class="retro-input" />
+    </label>
+
+    <label class="retro-label">
+      <span>Mes:</span>
+      <select v-model="mesPublicacion" class="retro-input">
+        <option disabled value="">Selecciona el mes</option>
+        <option>enero</option>
+        <option>febrero</option>
+        <option>marzo</option>
+        <option>abril</option>
+        <option>mayo</option>
+        <option>junio</option>
+        <option>julio</option>
+        <option>agosto</option>
+        <option>septiembre</option>
+        <option>octubre</option>
+        <option>noviembre</option>
+        <option>diciembre</option>
+      </select>
+    </label>
+
+    <button @click="uploadImage" class="retro-button">⬆ Subir</button>
   </div>
 </template>
 
@@ -44,11 +49,9 @@ export default {
       selectedFile: null,
       filename: '',
       fechaPublicacion: '',
-      mesPublicacion: '', // ← NUEVO
+      mesPublicacion: '',
       images: [],
       backendUrl: 'https://lechebronca-backend-production-b77f.up.railway.app'
-      // http://localhost:3000 --- local
-      // https://lechebronca-backend-production-b77f.up.railway.app --- web
     };
   },
   methods: {
@@ -73,7 +76,7 @@ export default {
       formData.append('image', this.selectedFile);
       formData.append('filename', this.filename.trim());
       formData.append('fechaPublicacion', parsedYear);
-      formData.append('mesPublicacion', this.mesPublicacion); // ← NUEVO
+      formData.append('mesPublicacion', this.mesPublicacion);
 
       try {
         await axios.post(this.backendUrl + '/images', formData, {
@@ -107,3 +110,59 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.upload-container {
+  font-family: 'Courier New', monospace;
+  background-color: #ece9d8;
+  border: 4px solid #0050ee;
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 0 12px black;
+  border-radius: 10px;
+}
+
+.retro-title {
+  font-size: 24px;
+  margin-bottom: 16px;
+  text-align: center;
+  color: #000080;
+  text-shadow: 1px 1px white;
+}
+
+.retro-label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #000;
+}
+
+.retro-input {
+  padding: 6px;
+  border: 2px solid #7f7f7f;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  font-family: 'Courier New', monospace;
+  background-color: #f5f5f5;
+  font-size: 14px;
+}
+
+.retro-button {
+  width: 100%;
+  background-color: #c0c0c0;
+  border: 2px outset #fff;
+  padding: 10px;
+  font-family: 'Courier New', monospace;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: inset -2px -2px 0px #ffffff, inset 2px 2px 0px #808080;
+  transition: all 0.2s ease;
+}
+
+.retro-button:hover {
+  background-color: #a8a8a8;
+}
+</style>

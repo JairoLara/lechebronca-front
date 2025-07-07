@@ -3,12 +3,7 @@
     <div class="projects-content">
       <div class="projects-window">
         <div class="window-title-bar">
-          <div class="title-with-upload">
-            PROJECTS
-            <button class="upload-icon" @click="showModal = true" title="Subir imagen">
-              📤
-            </button>
-          </div>
+          PROJECTS
           <div class="window-controls">
             <button class="minimizar">_</button>
             <button class="maximizar">☐</button>
@@ -16,15 +11,6 @@
           </div>
         </div>
 
-        <!-- Modal para subir imagen -->
-        <div v-if="showModal" class="modal-overlay">
-          <div class="modal-content">
-            <button class="close-modal" @click="showModal = false">✖</button>
-            <Upload />
-          </div>
-        </div>
-
-        <!-- NUEVO contenedor para alinear horizontalmente -->
         <div class="content-wrapper">
           <div class="years">
             <ul>
@@ -58,14 +44,11 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue'
-import RetroWindow from '@/components/AdminRetroW.vue'
+import RetroWindow from '@/components/RetroWindow.vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
-import Upload from '@/components/Upload.vue'
 
 const router = useRouter()
-const showModal = ref(false)
-
 function irAHome() {
   router.push('/')
 }
@@ -76,7 +59,7 @@ const backendUrl = 'https://lechebronca-backend-production-b77f.up.railway.app'
 
 const fetchImages = async () => {
   try {
-    const res = await axios.get(backendUrl + '/images')
+    const res = await axios.get(`${backendUrl}/images`)
     images.value = res.data
     if (uniqueYears.value.length && !selectedYear.value) {
       selectedYear.value = uniqueYears.value[0]
@@ -88,8 +71,8 @@ const fetchImages = async () => {
 
 const uniqueYears = computed(() => {
   const years = images.value
-    .filter((img) => img.fechaPublicacion)
-    .map((img) => img.fechaPublicacion)
+    .filter(img => img.fechaPublicacion)
+    .map(img => img.fechaPublicacion)
 
   return Array.from(new Set(years)).sort((a, b) => a - b)
 })
@@ -100,7 +83,7 @@ const filterByYear = (year) => {
 
 const filteredImages = computed(() => {
   if (!selectedYear.value) return images.value
-  return images.value.filter((img) => img.fechaPublicacion === selectedYear.value)
+  return images.value.filter(img => img.fechaPublicacion === selectedYear.value)
 })
 
 const eliminarProyecto = async (id) => {
@@ -109,7 +92,8 @@ const eliminarProyecto = async (id) => {
 
   try {
     await axios.delete(`${backendUrl}/images/${id}`)
-    fetchImages()
+    // Recargar la lista después de eliminar
+    await fetchImages()
   } catch (error) {
     console.error('Error al eliminar el proyecto', error)
     alert('Error al eliminar el proyecto.')
@@ -147,6 +131,7 @@ onMounted(fetchImages)
   border-radius: 4px;
   cursor: pointer;
   font-family: 'agency fb', sans-serif;
+  transition: background-color 0.3s ease;
 }
 .btn-eliminar:hover {
   background-color: #cc0000;
@@ -158,26 +143,6 @@ onMounted(fetchImages)
   font-size: 24px;
   padding: 4px;
   position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.title-with-upload {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.upload-icon {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  color: white;
-}
-.upload-icon:hover {
-  transform: scale(1.2);
 }
 
 .window-controls {
@@ -244,17 +209,21 @@ onMounted(fetchImages)
   margin: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  flex: 1; /* hace que el scroll solo se aplique aquí */
+  flex: 1;
   padding: 10px;
   scroll-behavior: smooth;
 }
+
 .projects li {
   display: inline-block;
   margin: 10px;
+  vertical-align: top;
 }
+
 .projects img {
   width: 230px;
 }
+
 .projects h2 {
   text-align: center;
   font-size: 54px;
@@ -357,14 +326,6 @@ onMounted(fetchImages)
   scrollbar-width: thin;
 }
 
-.projects li {
-  display: inline-block;
-  margin: 10px;
-}
-.projects img {
-  width: 230px;
-}
-
 @media (max-width: 480px) {
   .content-wrapper {
     flex-direction: column;
@@ -400,7 +361,7 @@ onMounted(fetchImages)
     display: flex;
     flex-direction: column;
     margin: 0;
-    overflow-y: auto; /* Agrega scroll si es necesario */
+    overflow-y: auto;
     border: none;
     background-color: #ece9d8;
   }
@@ -420,41 +381,5 @@ onMounted(fetchImages)
     max-height: 60vh;
     padding-right: 8px;
   }
-}
-
-/* Modal y estilos botón subir */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background-color: #ece9d8;
-  padding: 20px;
-  border: 6px solid #0050ee;
-  border-radius: 12px;
-  width: 90%;
-  max-width: 600px;
-  position: relative;
-  box-shadow: 0 0 15px black;
-}
-
-.close-modal {
-  position: absolute;
-  top: 10px;
-  right: 14px;
-  background: none;
-  border: none;
-  font-size: 22px;
-  cursor: pointer;
-  color: red;
 }
 </style>

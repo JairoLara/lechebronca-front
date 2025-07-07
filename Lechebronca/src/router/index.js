@@ -6,7 +6,6 @@ import WelcomeView from '@/views/WelcomeView.vue';
 import ProjectsView from '@/views/ProjectsView.vue';
 import BlogView from '@/views/BlogView.vue';
 import ProjectView from '@/views/ProjectView.vue';
-import AdminUpload from '@/views/AdminUpload.vue';
 
 
 
@@ -41,11 +40,6 @@ const routes = [
     path: '/blog',
     name: 'blog',
     component: BlogView
-  },
-  {
-    path: '/admin/upload',
-    name: 'adupload',
-    component: AdminUpload
   }
 ];
 

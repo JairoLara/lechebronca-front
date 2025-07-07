@@ -11,27 +11,34 @@
           </div>
         </div>
 
-        <!-- NUEVO contenedor para alinear horizontalmente -->
         <div class="content-wrapper">
           <div class="years">
             <ul>
-              <li
-                v-for="year in uniqueYears"
-                :key="year"
-                @click="filterByYear(year)"
-                :class="{ active: year === selectedYear }"
-              >
-                {{ year }}
+              <li v-for="year in uniqueYears" :key="year" class="year-container">
+                <div @click="toggleYear(year)" class="year-button">
+                  {{ year }}
+                </div>
+
+                <div v-if="openYear === year" class="months-list">
+                  <div
+                    v-for="month in monthsByYear(year)"
+                    :key="month"
+                    @click="selectMonth(year, month)"
+                    :class="{ 'month-item': true, active: selectedYear === year && selectedMonth === month }"
+                  >
+                    {{ month }}
+                  </div>
+                </div>
               </li>
             </ul>
           </div>
 
           <div class="projects">
-            <h2>{{ selectedYear }}</h2>
+            <h2 v-if="selectedMonth">{{ selectedYear }} - {{ selectedMonth }}</h2>
             <ul>
               <li v-for="img in filteredImages" :key="img.id">
                 <router-link :to="`/project/${img.id}`">
-                  <img :src="backendUrl + img.filepath" alt="Imagen" width="100" />
+                  <img :src="backendUrl + img.filepath" alt="Imagen" />
                 </router-link>
               </li>
             </ul>
@@ -41,6 +48,8 @@
     </div>
   </RetroWindow>
 </template>
+
+
 
 <script setup>
 import { ref, onMounted, computed } from 'vue'
@@ -54,37 +63,56 @@ function irAHome() {
 }
 
 const images = ref([])
+const openYear = ref(null)
 const selectedYear = ref(null)
+const selectedMonth = ref(null)
 const backendUrl = 'https://lechebronca-backend-production-b77f.up.railway.app'
 
+// Obtener imágenes desde el backend
 const fetchImages = async () => {
   try {
     const res = await axios.get(backendUrl + '/images')
     images.value = res.data
-    if (uniqueYears.value.length && !selectedYear.value) {
-      selectedYear.value = uniqueYears.value[0]
-    }
   } catch (error) {
     console.error('Error al cargar imágenes', error)
   }
 }
 
+// Años únicos para mostrar
 const uniqueYears = computed(() => {
   const years = images.value
     .filter((img) => img.fechaPublicacion)
     .map((img) => img.fechaPublicacion)
-
   return Array.from(new Set(years)).sort((a, b) => a - b)
 })
 
-const filterByYear = (year) => {
-  selectedYear.value = year
+// Meses únicos según el año
+const monthsByYear = (year) => {
+  const months = images.value
+    .filter((img) => img.fechaPublicacion === year)
+    .map((img) => img.mesPublicacion)
+  return Array.from(new Set(months)).sort()
 }
 
+// Mostrar imágenes solo si hay mes y año seleccionado
 const filteredImages = computed(() => {
-  if (!selectedYear.value) return images.value
-  return images.value.filter((img) => img.fechaPublicacion === selectedYear.value)
+  if (!selectedYear.value || !selectedMonth.value) return []
+  return images.value.filter(
+    (img) =>
+      img.fechaPublicacion === selectedYear.value && img.mesPublicacion === selectedMonth.value,
+  )
 })
+
+// Cuando le picas al año, solo se expande su lista de meses
+const toggleYear = (year) => {
+  openYear.value = openYear.value === year ? null : year
+}
+
+// Cuando eliges un mes, ahora sí cambia el contenido mostrado
+const selectMonth = (year, month) => {
+  selectedYear.value = year
+  selectedMonth.value = month
+}
 
 onMounted(fetchImages)
 </script>
@@ -264,17 +292,7 @@ onMounted(fetchImages)
     inset 2px 2px 0px #555;
 }
 
-.years ul li.active,
-.years ul li:hover {
-  background-image: url('https://img1.picmix.com/output/stamp/normal/8/3/1/8/2498138_cf86a.gif');
-  color: white;
-  border-color: #ffffff;
-  font-weight: bold;
-  box-shadow:
-    inset -2px -2px 0px #cccccc,
-    inset 2px 2px 0px #0018aa;
-  transform: translateY(-1px);
-}
+
 
 /* Retro estilo del scroll */
 .projects ul::-webkit-scrollbar {
@@ -361,4 +379,58 @@ onMounted(fetchImages)
     padding-right: 8px;
   }
 }
+
+/* 🔷 Año - con fondo gif */
+.year-container {
+  margin: 10px 0;
+}
+
+.year-button {
+
+  color: rgb(49, 49, 49);
+  font-size: 18px;
+  padding: 12px 8px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  box-shadow:
+    inset -2px -2px 0px #ffffff,
+    inset 2px 2px 0px #7d7d7d;
+}
+.year-button:hover {
+    background-image: url('https://img1.picmix.com/output/stamp/normal/8/3/1/8/2498138_cf86a.gif');
+  color: white;
+}
+
+
+/* ✅ Meses - sin heredar estilo del año */
+.months-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 0 12px;
+  align-items: center;
+}
+
+.month-item {
+  font-size: 14px;
+  color: #0050ee;
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  box-shadow: none;
+  user-select: none;
+}
+
+.month-item:hover {
+  color: red;
+}
+
+.month-item.active {
+  font-weight: bold;
+  color: darkred;
+}
+
+
 </style>

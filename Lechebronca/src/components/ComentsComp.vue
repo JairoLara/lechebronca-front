@@ -36,7 +36,7 @@ onMounted(fetchComments)
 
 <template>
   <div class="comentarios">
-      
+
       <p v-if="comments.length === 0">No hay comentarios aún.</p>
       <ul v-else>
           <p class="com" v-for="(c, i) in comments" :key="i">{{ c.content }}</p>
@@ -55,35 +55,30 @@ onMounted(fetchComments)
 
 <style scoped>
 .comentarios {
-  bottom: 10px;
-  right: 10px;
   background: none;
-  border: 4px solid #0050EE;
-  padding: 1rem;
   font-family: 'agency fb', sans-serif;
-  max-width: 300px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
+
 .com{
-    background-color: bisque;
-    margin: 10px;
-    padding: 10px;
-    border: 4px solid #0050EE;
-}
+  background-color: #ECE9D8;
+  padding: 5px;
+  border: 2px solid #0050EE;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  width: 90%;
+  margin-left: 10%;}
 
 form {
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
 }
 
 .input {
-  padding: 0.5rem;
   font-family: inherit;
-  margin-bottom: 0.5rem;
   border: 2px solid #0050EE;
-  border-radius: 5px;
   outline: none;
+  height: 100px;
 }
 
 .btn {
@@ -92,7 +87,6 @@ form {
   background-color: #0050EE;
   color: white;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
 }
 .btn:hover {

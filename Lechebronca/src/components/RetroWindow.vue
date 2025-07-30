@@ -14,6 +14,8 @@
       <span class="window-title">LECHEBRONCA</span>
     </div>
     <RouterLink to="/admin">h</RouterLink>
+    <RouterLink to="/prueba">h</RouterLink>
+
     <nav class="nav-bar">
       <button @click="irAHome">HOME</button>
       <button>ABOUT</button>

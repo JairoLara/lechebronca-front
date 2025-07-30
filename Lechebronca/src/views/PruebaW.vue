@@ -1,67 +1,99 @@
 <template>
-  <div class="ventana-wrapper">
-    <!-- Imagen de la plantilla de navegador -->
-    <img src="../assets/WEB-BROWSER.png" alt="Ventana Retro" class="plantilla" />
+  <div class="container">
+    <h2>Publicar nuevo artículo</h2>
+    <form @submit.prevent="publicarArticulo" class="formulario">
+      <input v-model="titulo" type="text" placeholder="Título del artículo" required />
+      <textarea v-model="texto" placeholder="Contenido del artículo" rows="5" required></textarea>
+      <input v-model.number="fechaPublicacion" type="number" placeholder="Año de publicación" required />
+      <button type="submit">Publicar</button>
+    </form>
 
-    <!-- Contenido dentro de la ventana -->
-    <div class="contenido">
-      <label>Address:</label>
-      <input type="text" :value="url" readonly />
-      <button>Go</button>
-      <p class="estado">Done</p>
-    </div>
+    <hr />
+
+    <h2>Artículos publicados</h2>
+    <div v-if="articulos.length === 0">No hay artículos aún.</div>
+    <ul>
+      <li v-for="articulo in articulos" :key="articulo.id" class="articulo">
+        <h3>{{ articulo.titulo }}</h3>
+        <p>{{ articulo.texto }}</p>
+        <small>Año: {{ articulo.fechaPublicacion }}</small>
+      </li>
+    </ul>
   </div>
 </template>
 
-<script setup>
-const url = 'https://www.youtube.com/watch?v=BpKxQ55DugI'
+<script>
+import axios from 'axios';
+
+const API_URL = 'https://lechebronca-backend-production-b77f.up.railway.app';
+
+export default {
+  name: 'Articulos',
+  data() {
+    return {
+      titulo: '',
+      texto: '',
+      fechaPublicacion: '',
+      articulos: []
+    };
+  },
+  methods: {
+    async publicarArticulo() {
+      try {
+        const nuevo = {
+          titulo: this.titulo,
+          texto: this.texto,
+          fechaPublicacion: this.fechaPublicacion
+        };
+
+        const res = await axios.post(`${API_URL}/articles`, nuevo);
+        this.articulos.push(res.data);
+
+        // Limpiar formulario
+        this.titulo = '';
+        this.texto = '';
+        this.fechaPublicacion = '';
+      } catch (error) {
+        console.error('Error al publicar artículo:', error);
+        alert('Error al publicar el artículo');
+      }
+    },
+    async obtenerArticulos() {
+      try {
+        const res = await axios.get(`${API_URL}/articles`);
+        this.articulos = res.data;
+      } catch (error) {
+        console.error('Error al obtener artículos:', error);
+      }
+    }
+  },
+  mounted() {
+    this.obtenerArticulos();
+  }
+};
 </script>
 
 <style scoped>
-.ventana-wrapper {
-  position: relative;
-  width: 1000px; /* Ajusta al tamaño real de tu imagen */
-  height: 800px;
-  font-family: Tahoma, sans-serif;
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 1rem;
 }
-
-.plantilla {
-  width: 100%;
-  height: 100%;
+.formulario input,
+.formulario textarea {
   display: block;
-}
-
-.contenido {
-  position: absolute;
-  top: 100px;     /* Ajusta según dónde empieza el "área blanca" */
-  left: 30px;
-  right: 30px;
-  bottom: 50px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  color: black;
-}
-
-input {
-  padding: 4px;
   width: 100%;
-  border: 1px solid #ccc;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
 }
-
-button {
-  width: fit-content;
-  padding: 4px 12px;
-  background-color: #b6d7a8;
-  border: 1px solid black;
+.formulario button {
+  padding: 0.5rem 1rem;
   cursor: pointer;
 }
-
-.estado {
-  position: absolute;
-  bottom: -30px;
-  left: 10px;
-  font-size: 12px;
-  color: #333;
+.articulo {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
 </style>

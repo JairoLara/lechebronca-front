@@ -13,8 +13,7 @@
     <div class="window-header">
       <span class="window-title">LECHEBRONCA</span>
     </div>
-    <RouterLink to="/admin">h</RouterLink>
-    <RouterLink to="/prueba">h</RouterLink>
+    <RouterLink to="/prueba">articulos</RouterLink>
 
     <nav class="nav-bar">
       <button @click="irAHome">HOME</button>
@@ -27,11 +26,12 @@
       <slot />
     </div>
   </div>
+  <Navbar></Navbar>
 </template>
 
 <script setup>
-
 import { RouterLink, useRouter } from 'vue-router';
+import Navbar from './Navbar.vue';
 const router = useRouter();
 
 function irAProjects() {

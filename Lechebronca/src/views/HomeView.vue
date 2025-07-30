@@ -55,6 +55,7 @@ seguir la parranda...
 <Footer />
 
   </RetroWindow>
+
 </template>
 
 <script setup>

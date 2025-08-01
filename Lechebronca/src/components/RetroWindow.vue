@@ -15,12 +15,7 @@
     </div>
     <RouterLink to="/prueba">articulos</RouterLink>
 
-    <nav class="nav-bar">
-      <button @click="irAHome">HOME</button>
-      <button>ABOUT</button>
-      <button @click="irAProjects">PROJECTS</button>
-      <button @click="irABlog">BLOG</button>
-    </nav>
+
 
     <div class="window-body">
       <slot />
@@ -34,15 +29,7 @@ import { RouterLink, useRouter } from 'vue-router';
 import Navbar from './Navbar.vue';
 const router = useRouter();
 
-function irAProjects() {
-  router.push('/projects');
-}
-function irAHome() {
-  router.push('/');
-}
-function irABlog() {
-  router.push('/blog');
-}
+
 </script>
 
 <style scoped>

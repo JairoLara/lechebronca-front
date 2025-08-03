@@ -1,32 +1,20 @@
 <template>
   <RetroWindow>
     <div class="blog-window">
-       <div class="window-title-bar">
-      BLOG
-     <div class="window-controls">
-        <button class="minimizar">_</button>
-        <button class="maximizar">☐</button>
-        <button @click="irAHome" class="cerrar">✕</button>
-      </div>
-    </div>
         <div class="contenido" style="padding: 20px;">
-            <p>Hola, este es mi blog, aqui compartire algunos de mis proyectos y de igual manera algunos de mis videos sobre dibujo y animación.</p>
+          <PruebaW></PruebaW>
+          <div class="gifs">
             <a href="/videos" style="text-decoration: underline; color: #0050EE; text-shadow: black;">> Sección dedicada a videos <</a>
-            <p>Descubre mi pagina externa aqui...</p>
-                <div class="gifs">
-                    <img src="@/assets/youtube.gif"  width="88" height="31" alt="GIF animado">
-                    <a href="https://productora-galindoavila.com/" target="_blank" rel="noopener noreferrer">
-  <img src="@/assets/fb8c0d57445746a.gif" width="88" height="31" alt="GIF animado">
-</a>
-                </div>
+          </div>
         </div>
-    </div>
-  </RetroWindow>
+      </div>
+    </RetroWindow>
 </template>
 
 <script setup>
 
 import RetroWindow from '@/components/RetroWindow.vue'
+import PruebaW from '../components/ArticulosComp.vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 
@@ -41,8 +29,7 @@ function irAHome() {
   width: 100%;
   max-width: 850px;
   margin: 0 auto;
-  border: 7px solid #0050EE;
-  border-radius: 10px;
+  border-top: 7px solid #0050EE;
   background-position: center center;
   background-size: cover;
   font-family: 'agency fb', sans-serif;

@@ -6,7 +6,6 @@ import WelcomeView from '@/views/WelcomeView.vue';
 import ProjectsView from '@/views/ProjectsView.vue';
 import BlogView from '@/views/BlogView.vue';
 import ProjectView from '@/views/ProjectView.vue';
-import PruebaW from '@/views/PruebaW.vue';
 
 
 
@@ -42,11 +41,6 @@ const routes = [
     name: 'blog',
     component: BlogView
   },
-  {
-    path: '/prueba',
-    name: 'prueba',
-    component: PruebaW
-  }
 ];
 
 const router = createRouter({

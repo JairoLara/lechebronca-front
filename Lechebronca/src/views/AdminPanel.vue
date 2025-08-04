@@ -1,5 +1,7 @@
 <template>
+  <FoldersNavbar/>
   <RetroWindow>
+    <button @click="cerrarSesion">Cerrar sesión</button>
     <div class="projects-content">
       <div class="projects-window">
         <div class="window-title-bar">
@@ -23,7 +25,6 @@
             <Upload />
           </div>
         </div>
-
         <!-- NUEVO contenedor para alinear horizontalmente -->
         <div class="content-wrapper">
           <div class="years">
@@ -58,6 +59,7 @@
 
 <script setup>
 import { ref, onMounted, computed } from 'vue'
+import FoldersNavbar from '@/components/FoldersNavbar.vue'
 import RetroWindow from '@/components/AdminRetroW.vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
@@ -69,7 +71,10 @@ const showModal = ref(false)
 function irAHome() {
   router.push('/')
 }
-
+function cerrarSesion() {
+  localStorage.removeItem('adminCodigoValido')
+  router.push('/admin')
+}
 const images = ref([])
 const selectedYear = ref(null)
 const backendUrl = 'https://lechebronca-backend-production-b77f.up.railway.app'

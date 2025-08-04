@@ -1,57 +1,66 @@
 <template>
   <div class="retro-window">
-
     <div class="window-title-bar">
-      WINDOW
+      <img style="height: 15px;" src="@/assets/carpeta.png" alt="">
+      Explorador - <strong>{{ currentViewName }}</strong>
       <div class="window-controls">
-        <button class="minimizar">_</button>
-        <button class="maximizar">☐</button>
         <button class="cerrar">✕</button>
       </div>
     </div>
 
     <div class="window-header">
-      <span class="window-title">LECHEBRONCA</span>
+      <button>Archivo</button>
+      <button>Editar</button>
+      <button>Vista</button>
+      <button>Favoritos</button>
+      <button>Herramientas</button>
+      <button>Ayuda</button>
+
+      <div class="search-bar">
+        <div style="color: #9B998C; margin-left: 6px; font-size: 11px;">
+           Address
+        </div>
+
+        <div class="search-input">
+          D:\PC\Dekstop\<strong>{{ currentViewName }}</strong>
+          <button class="arrow">∨</button>
+        </div>
+        <button class="btn-go">➜</button> Go
+        <button style="color: #9B998C; margin-left: 10px;">Links </button>»
+      </div>
     </div>
-    <RouterLink to="/admin">h</RouterLink>
-    <nav class="nav-bar">
-      <button @click="irAHome">HOME</button>
-      <button>ABOUT</button>
-      <button @click="irAProjects">PROJECTS</button>
-      <button @click="irABlog">BLOG</button>
-    </nav>
 
     <div class="window-body">
       <slot />
     </div>
   </div>
+  <Navbar></Navbar>
 </template>
 
 <script setup>
+import { ref, watch } from 'vue'
+import { useRoute, RouterLink } from 'vue-router'
+import Navbar from './Navbar.vue'
 
-import { RouterLink, useRouter } from 'vue-router';
-const router = useRouter();
+const route = useRoute()
+const currentViewName = ref(route.name)
 
-function irAProjects() {
-  router.push('/admin/panel');
-}
-function irAHome() {
-  router.push('/');
-}
-function irABlog() {
-  router.push('/blog');
-}
+watch(
+  () => route.name,
+  (newName) => {
+    currentViewName.value = newName
+  },
+)
 </script>
 
 <style scoped>
 .retro-window {
-  width: 100%;
-  height: 100%;
-  max-width: 850px;
+  width: auto;
+  height: 50%;
+  max-width: 650px;
   margin: 0 auto;
-  border: 7px solid #0050EE;
+  border: 4px solid #0050ee;
   border-radius: 10px;
-  font-family: 'agency fb', sans-serif;
   box-shadow: 0 0 12px black;
   display: flex;
   flex-direction: column;
@@ -59,15 +68,15 @@ function irABlog() {
 }
 
 .window-title-bar {
-  background-color: #0050EE;
+  height: 20px;
+  background-color: #0050ee;
   color: white;
-  font-size: 24px;
+  font-size: 13px;
 }
 
 .window-controls {
   float: right;
   display: flex;
-
 }
 
 .window-controls button.cerrar {
@@ -77,21 +86,22 @@ function irABlog() {
   align-items: center;
   background: linear-gradient(to bottom, #cca8a8, #ff0000, #a52121);
   color: white;
-  border: white 2px solid;
+  border: white 1px solid;
   padding: 0.5rem;
   margin: 2px;
   cursor: pointer;
-  font-size: 18px;
-  width: 30px;
-  height: 30px;
+  font-size: 12px;
+  width: 18px;
+  height: 18px;
 }
 
-.window-controls button.minimizar,button.maximizar {
+.window-controls button.minimizar,
+button.maximizar {
   display: flex;
   justify-content: center;
   border-radius: 3px;
   align-items: center;
-  background: linear-gradient(to bottom, #a8b4cc, #0050EE, #214da5);
+  background: linear-gradient(to bottom, #a8b4cc, #0050ee, #214da5);
   color: white;
   border: white 2px solid;
   padding: 0.5rem;
@@ -101,31 +111,89 @@ function irABlog() {
   width: 30px;
   height: 30px;
 }
-.window-controls button.minimizar:hover, button.maximizar:hover {
-  background: linear-gradient(to bottom, #0050EE, #214da5, #a8b4cc);
+.window-controls button.minimizar:hover,
+button.maximizar:hover {
+  background: linear-gradient(to bottom, #0050ee, #214da5, #a8b4cc);
 }
-
 .window-controls button.cerrar:hover {
   background: linear-gradient(to bottom, #ff0000, #a52121, #cca8a8);
 }
 
+.search-bar .btn-go {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 1px;
+  font-size: 14px;
+  background: linear-gradient(to right, #a5dba5, #5ab95a, #1ba81b);
+  color: WHITE;
+  margin-left: 10px;
+}
+
+.search-bar .btn-go:hover {
+  background: linear-gradient(to right, #5ab95a, #1ba81b, #a5dba5);
+}
+
 .window-header {
- /* background-color: #0000aa;*/
+  /* background-color: #0000aa;*/
   color: rgb(0, 0, 0);
-  padding: 0.1rem;
+  padding: 0.3rem;
   font-weight: bold;
-  background-color: rgba(200, 200, 200, 0.6);
-  font-size: 58px;
+  background-color: #efebd8;
+}
+
+.window-header button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 11px;
+}
+
+.window-header button:hover {
+  text-decoration: underline;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  font-size: 13px;
+}
+.search-input {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  border: 2px solid #c2c2c2;
+  padding: 0.03rem;
+  margin-left: 0.5rem;
+  width: 42rem;
+  font-size: 10px;
+  height: 20px;
+}
+
+.search-input .arrow {
+   margin-left: auto;
+  width: 15px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border-radius: 1px;
+  font-size: 16px;
+  color: #53678A;
+  background: linear-gradient(to bottom, #d4e1f7, #C7DAFB, #98b5e7);
+
 }
 
 .nav-bar {
   display: flex;
   justify-content: space-around;
-  background: #0050EE;
+  background: #0050ee;
   padding: 0.5rem;
   box-shadow: 0 -7px 6px rgba(0, 0, 0, 0.2);
   position: relative;
-
 }
 
 .nav-bar button {
@@ -155,12 +223,10 @@ function irABlog() {
   border: 5px inset #8d8d8d;
 }
 
-
 .window-body {
   flex: 1;
-  background-color: rgba(200, 200, 200, 0.6);
+  background-color: #f1f0e8;
   color: black;
   overflow-y: auto;
 }
-
 </style>

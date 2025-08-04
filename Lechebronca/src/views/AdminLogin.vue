@@ -36,8 +36,11 @@ export default {
         this.mensaje = data.mensaje;
 
         if (data.acceso) {
-          this.$router.push('/admin/panel');
-        }
+  const expiracion = Date.now() + 5 * 60 * 1000; // 5 minutos en ms
+  localStorage.setItem('adminCodigoValido', this.codigo);
+  localStorage.setItem('adminCodigoExpira', expiracion.toString());
+  this.$router.push('/admin/panel');
+}
       } catch (error) {
         this.mensaje = 'Ocurrió un error al verificar el código';
       }

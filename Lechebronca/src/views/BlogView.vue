@@ -4,9 +4,7 @@
     <div class="blog-window">
         <div class="contenido" style="padding: 20px;">
           <PruebaW></PruebaW>
-          <div class="gifs">
-            <a href="/videos" style="text-decoration: underline; color: #0050EE; text-shadow: black;">> Sección dedicada a videos <</a>
-          </div>
+
         </div>
       </div>
     </RetroWindow>
@@ -31,16 +29,17 @@ function irAHome() {
 .blog-window {
   width: 100%;
   max-width: 850px;
+  height: 100%;
   margin: 0 auto;
-  border-top: 7px solid #0050EE;
+  background-color: #f5f9ff;
+  background-size: cover;
   background-position: center center;
   background-size: cover;
   font-family: 'agency fb', sans-serif;
   box-shadow: 0 0 12px black;
-  background-image: url('@/assets/paper-texture.gif');
   display: flex;
   flex-direction: column;
-  position: relative;
+
 }
 
 .gifs {
@@ -71,56 +70,7 @@ function irAHome() {
   image-rendering: pixelated;
 }
 
-.window-title-bar {
-  background-color: #0050EE;
-  color: white;
-  font-size: 24px;
-}
 
-.window-controls {
-  float: right;
-  display: flex;
-
-}
-
-.window-controls button.cerrar {
-  display: flex;
-  justify-content: center;
-  border-radius: 3px;
-  align-items: center;
-  background: linear-gradient(to bottom, #cca8a8, #ff0000, #a52121);
-  color: white;
-  border: white 2px solid;
-  padding: 0.5rem;
-  margin: 2px;
-  cursor: pointer;
-  font-size: 18px;
-  width: 30px;
-  height: 30px;
-}
-
-.window-controls button.minimizar,button.maximizar {
-  display: flex;
-  justify-content: center;
-  border-radius: 3px;
-  align-items: center;
-  background: linear-gradient(to bottom, #a8b4cc, #0050EE, #214da5);
-  color: white;
-  border: white 2px solid;
-  padding: 0.5rem;
-  margin: 2px;
-  cursor: pointer;
-  font-size: 18px;
-  width: 30px;
-  height: 30px;
-}
-.window-controls button.minimizar:hover, button.maximizar:hover {
-  background: linear-gradient(to bottom, #0050EE, #214da5, #a8b4cc);
-}
-
-.window-controls button.cerrar:hover {
-  background: linear-gradient(to bottom, #ff0000, #a52121, #cca8a8);
-}
 
 .contenido{
     font-size: 25px;

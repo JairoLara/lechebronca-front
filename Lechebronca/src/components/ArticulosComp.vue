@@ -77,37 +77,48 @@ const selectArticle = async (id) => {
 
 <style scoped>
 .layout {
-  display: flex;
-  gap: 2rem;
-  padding: 1rem;
+   display: flex;
+  max-width: 950px;
+  margin: 0 auto;
+  height: 100%;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  background-color: #f5f9ff;
 }
 
 .articles-container {
-  width: 200px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+ width: 150px;
+  min-width: 120px;
+  background-color: #b3ccff;
+  border-right: 4px solid #0040dd;
+  padding: 1rem 0.5rem;
+  font-family: 'Tahoma', sans-serif;
+
 }
 
 .year-card {
-  background: linear-gradient(to bottom, #d4e5ff, #a9c8ff);
-  border: 2px solid #d4e5ff;
-  border-top-right-radius: 16px;
-  box-shadow:
-    inset -2px -2px 4px #ffffff,
-    inset 2px 2px 4px #5a91e2;
-  overflow: hidden;
+    margin-bottom: 0.5rem;
+  background: #e7f0ff;
+ border-top-right-radius:8px ;
+  border-top-left-radius:8px ;
+  border: 2px solid #a0c0f0;
+  padding: 0.3rem;
+  box-shadow: inset -1px -1px 2px #fff, inset 1px 1px 2px #6789c1;
 }
 
 .year-header {
-  background: linear-gradient(to bottom, #d4e5ff, #92baff);
-  color: #1154bd;
-  padding: 0.5rem 14px;
+  background-color: #c9ddff;
+  border: 2px solid #b0c7f7;
+  border-radius: 4px;
+  padding: 0.3rem 0.5rem;
   font-weight: bold;
+  font-size: 0.8rem;
+  color: #114ad9;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
+
 }
 
 .toggle-btn {
@@ -120,23 +131,23 @@ const selectArticle = async (id) => {
 
 .article-list {
   list-style: none;
-  padding: 0.5rem 1rem;
+  padding: 0.5px 1rem;
   background-color: #c5d1e9;
-}
-
-.article-list li {
-  margin-bottom: 0.5rem;
+;
 }
 
 .article-list a {
   text-decoration: underline;
   color: #0050ee;
+  font-size: 12px;
   cursor: pointer;
 }
 
 .CDicon{
-  width: 20px;
+  width: 14px;
   height: auto;
+  vertical-align: middle;
+  margin-right: 5px;
 }
 
 .article-list a:hover {
@@ -145,11 +156,32 @@ const selectArticle = async (id) => {
 }
 
 .article-view {
-  flex: 1;
-  background-color: #d3d3d3;
-  border: 2px dashed #ccc;
-  padding: 1rem;
+   flex: 1;
+  padding: 1.5rem;
+  font-size: 1rem;
+  background-image: url('@/assets/hojadelibreta.jpeg');
+  background-size: 70rem 44rem;
+  background-repeat: no-repeat;
+  background-color: #f5f9ff;
+  background-position: center center;
+  font-family: 'Segoe UI', sans-serif;
+  line-height: 1.8;
+  color: #0c1b36;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+  border: 3px double #ccc;
   border-radius: 10px;
-  min-width: 0;
+  min-height: 500px;
+}
+.article-view h2 {
+  font-size: 2.2rem;
+  color: #002b6c;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.article-view p {
+  margin-bottom: 1rem;
+  white-space: pre-wrap; /* mantiene saltos de línea */
 }
 </style>

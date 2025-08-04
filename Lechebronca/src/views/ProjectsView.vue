@@ -1,12 +1,13 @@
 <template>
+    <FoldersNavbar/>
   <RetroWindow>
     <div class="projects-content">
       <div class="projects-window">
         <div class="window-title-bar">
-          PROJECTS
+          <img style="height: 15px;" src="@/assets/carpeta.png" alt="">
+          Projects
+
           <div class="window-controls">
-            <button class="minimizar">_</button>
-            <button class="maximizar">☐</button>
             <button @click="irAHome" class="cerrar">✕</button>
           </div>
         </div>
@@ -54,6 +55,7 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import RetroWindow from '@/components/RetroWindow.vue'
+import FoldersNavbar from '@/components/FoldersNavbar.vue'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 
@@ -126,22 +128,20 @@ onMounted(fetchImages)
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 850px;
+  max-width: 650px;
   margin: 0 auto;
-  border: 7px solid #0050ee;
+  border: 4px solid #0050ee;
   border-radius: 10px;
-  font-family: 'agency fb', sans-serif;
   box-shadow: 0 0 12px black;
   background-color: #ece9d8;
   position: relative;
 }
 
 .window-title-bar {
+  height: 20px;
   background-color: #0050ee;
   color: white;
-  font-size: 24px;
-  padding: 4px;
-  position: relative;
+  font-size: 13px;
 }
 
 .window-controls {
@@ -151,21 +151,20 @@ onMounted(fetchImages)
   display: flex;
 }
 
-.window-controls button.cerrar,
-.window-controls button.minimizar,
-.window-controls button.maximizar {
+.window-controls button.cerrar {
   display: flex;
   justify-content: center;
-  align-items: center;
   border-radius: 3px;
+  align-items: center;
+  background: linear-gradient(to bottom, #cca8a8, #ff0000, #a52121);
   color: white;
-  border: white 2px solid;
+  border: white 1px solid;
   padding: 0.5rem;
   margin: 2px;
   cursor: pointer;
-  font-size: 18px;
-  width: 30px;
-  height: 30px;
+  font-size: 12px;
+  width: 18px;
+  height: 18px;
 }
 
 .window-controls button.cerrar {

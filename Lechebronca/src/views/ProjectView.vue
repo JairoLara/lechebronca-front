@@ -1,13 +1,23 @@
 <template>
+    <FoldersNavbar/>
   <RetroWindow>
     <div class="contenedor">
+      <!-- Imagen del proyecto -->
       <div class="ventana">
         <div v-if="proyecto">
           <h2>{{ proyecto.filename }}</h2>
-          <img :src="backendUrl + proyecto.filepath" alt="Imagen del proyecto" width="300" />
+          <img :src="backendUrl + proyecto.filepath" alt="Imagen del proyecto" />
         </div>
       </div>
-      <Comentarios />
+
+      <!-- Comentarios al lado derecho -->
+      <div class="comentarios">
+        <div class="comentarios-header">
+          <span>Comentarios</span>
+          <span class="flecha">👈</span>
+        </div>
+        <Comentarios />
+      </div>
     </div>
   </RetroWindow>
 </template>
@@ -15,6 +25,7 @@
 <script setup>
 import RetroWindow from '@/components/RetroWindow.vue'
 import Comentarios from '@/components/ComentsComp.vue'
+import FoldersNavbar from '@/components/FoldersNavbar.vue'
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import axios from 'axios'
@@ -37,34 +48,97 @@ onMounted(async () => {
 <style scoped>
 .contenedor {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-
+  gap: 20px;
+  padding: 20px;
+  flex-wrap: nowrap; /* 🔧 Esto evita que salte a otra línea */
 }
 
-.comentarios {
-  width: 40%;
-
+/* Sección de la imagen */
+.ventana {
+  flex: 1;
+  min-width: 350px;
   max-width: 600px;
-}
-.ventana{
-  border: 5px solid #0050EE;
-  width: 60vh;
-  
+  border: 3px solid #0050EE;
   padding: 10px;
   font-family: 'agency fb', sans-serif;
   box-shadow: 0 0 12px black;
   background-color: #ffffff;
-  justify-content: center;
 }
 
-@media (max-width: 680px) {
+/* Sección de comentarios */
+.comentarios {
+  flex: 1;
+  min-width: 250px;
+  max-width: 600px;
+  border: 2px dashed #ccc;
+  padding: 10px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+
+  /* 🧩 Prevención de overflow horizontal */
+  overflow-x: hidden;
+
+  /* 📜 Si hay muchos comentarios, scroll vertical */
+  overflow-y: auto;
+
+  /* 📐 Control de tamaño */
+  max-height: 80vh;
+
+  /* 🧵 Control de texto */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Flechita con texto arriba */
+.comentarios-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.flecha {
+  font-size: 1.5rem;
+  margin-left: 8px;
+}
+
+/* Título */
+.ventana h2 {
+  font-size: 2.3rem;
+  margin-bottom: 10px;
+}
+
+/* Imagen */
+.ventana img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* RESPONSIVO */
+@media (max-width: 880px) {
   .contenedor {
     flex-direction: column;
     align-items: center;
+    flex-wrap: wrap; /* Permite el salto en pantallas pequeñas */
   }
-}
-.ventana h2 {
-  font-size: 2.3rem;
+
+  .comentarios {
+    max-width: 100%;
+  }
+
+  .flecha {
+    display: none;
+  }
 }
 </style>

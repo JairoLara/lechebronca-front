@@ -1,4 +1,5 @@
 <template>
+   <FoldersNavbar/>
   <RetroWindow>
     <div class="blog-window">
         <div class="contenido" style="padding: 20px;">
@@ -15,6 +16,8 @@
 
 import RetroWindow from '@/components/RetroWindow.vue'
 import PruebaW from '../components/ArticulosComp.vue'
+import FoldersNavbar from '@/components/FoldersNavbar.vue'
+
 import { useRouter } from 'vue-router'
 const router = useRouter()
 

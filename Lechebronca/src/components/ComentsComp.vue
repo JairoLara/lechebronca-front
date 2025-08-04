@@ -56,7 +56,8 @@ onMounted(fetchComments)
 <style scoped>
 .comentarios {
   background: none;
-  font-family: 'agency fb', sans-serif;
+ font-family: 'Chicago', 'Courier New', monospace;
+
 }
 
 .com{
@@ -65,25 +66,28 @@ onMounted(fetchComments)
   border: 2px solid #0050EE;
   margin-bottom: 10px;
   border-radius: 5px;
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   width: 90%;
   margin-left: 10%;}
 
 form {
   display: flex;
   flex-direction: column;
+   position: sticky;
+  bottom: 0;
+  z-index: 10
 }
 
 .input {
   font-family: inherit;
-  border: 2px solid #0050EE;
+  border: 2px solid #707070;
   outline: none;
   height: 100px;
 }
 
 .btn {
   padding: 0.4rem;
-  font-family: inherit;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #0050EE;
   color: white;
   border: none;

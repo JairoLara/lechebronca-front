@@ -55,7 +55,7 @@ watch(
 
 <style scoped>
 .retro-window {
-  width: 50%;
+  width: auto;
   height: 50%;
   max-width: 650px;
   margin: 0 auto;

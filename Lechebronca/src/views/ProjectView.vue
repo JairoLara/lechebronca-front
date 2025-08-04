@@ -6,7 +6,7 @@
       <div class="ventana">
         <div v-if="proyecto">
           <h2>{{ proyecto.filename }}</h2>
-          <img :src="backendUrl + proyecto.filepath" alt="Imagen del proyecto" />
+          <img class="imagen-proyecto" :src="backendUrl + proyecto.filepath" alt="Imagen del proyecto" />
         </div>
       </div>
 
@@ -139,6 +139,14 @@ onMounted(async () => {
 
   .flecha {
     display: none;
+  }
+
+ .imagen-proyecto {
+    width: 100%;
+    display: block;
+    max-width: 300px;
+    height: auto;
+    margin: 0 auto;
   }
 }
 </style>

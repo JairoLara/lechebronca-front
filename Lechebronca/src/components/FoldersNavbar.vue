@@ -76,4 +76,9 @@ const tabs = [
   padding: 2px 4px;
 }
 
+@media (max-width: 880px) {
+  .desktop-navbar{
+    visibility: hidden;
+  }
+}
 </style>

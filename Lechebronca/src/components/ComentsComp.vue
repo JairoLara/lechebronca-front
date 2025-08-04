@@ -137,9 +137,5 @@ ul {
   .btn{
     width: 160px;
   }
-
-  .input {
-    width: 160px;
-  }
 }
 </style>

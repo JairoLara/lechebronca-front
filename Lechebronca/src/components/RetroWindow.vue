@@ -13,7 +13,10 @@
       <button>Editar</button>
       <button>Vista</button>
       <button>Favoritos</button>
-      <button>Herramientas</button>
+      <a href="https://drive.google.com/drive/folders/1YoujJt2BbF5FrHgYW8b2G5F5SpCY7_ga">
+          <button>Herramientas</button>
+      </a>
+ 
       <button>Ayuda</button>
 
       <div class="search-bar">

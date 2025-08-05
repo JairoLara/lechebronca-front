@@ -45,16 +45,25 @@ const fetchArticulos = async () => {
   try {
     const res = await axios.get(`${API_URL}/articles`)
     articulos.value = res.data
+
+    // Seleccionar automáticamente el primer año y artículo
+    const firstYear = uniqueYears.value[0]
+    if (firstYear) {
+      openYear.value = firstYear
+      const firstArticle = articlesByYear(firstYear)[0]
+      if (firstArticle) {
+        const articleDetails = await axios.get(`${API_URL}/articles/${firstArticle.id}`)
+        articuloSeleccionado.value = articleDetails.data
+      }
+    }
   } catch (err) {
     console.error('Error al cargar artículos:', err)
   }
 }
 
-onMounted(fetchArticulos)
-
 const uniqueYears = computed(() => {
   const years = articulos.value.map((a) => a.fechaPublicacion)
-  return [...new Set(years)].sort((a, b) => b - a)
+  return [...new Set(years)].sort((a, b) => b - a) // orden descendente
 })
 
 const articlesByYear = (year) => {
@@ -73,7 +82,10 @@ const selectArticle = async (id) => {
     console.error('Error al obtener artículo:', error)
   }
 }
+
+onMounted(fetchArticulos)
 </script>
+
 
 <style scoped>
 .layout {

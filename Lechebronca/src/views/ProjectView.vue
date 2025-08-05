@@ -59,7 +59,7 @@ onMounted(async () => {
 /* Sección de la imagen */
 .ventana {
   flex: 1;
-  min-width: 350px;
+  min-width: 370px;
   max-width: 600px;
   border: 3px solid #0050EE;
   padding: 10px;
@@ -71,7 +71,7 @@ onMounted(async () => {
 /* Sección de comentarios */
 .comentarios {
   flex: 1;
-  min-width: 250px;
+  min-width: 190px;
   max-width: 600px;
   border: 2px dashed #ccc;
   padding: 10px;

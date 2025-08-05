@@ -53,7 +53,7 @@
 
 
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import RetroWindow from '@/components/RetroWindow.vue'
 import FoldersNavbar from '@/components/FoldersNavbar.vue'
 import axios from 'axios'
@@ -75,12 +75,23 @@ const fetchImages = async () => {
   try {
     const res = await axios.get(backendUrl + '/images')
     images.value = res.data
+
+    // Seleccionar automáticamente el primer año y mes si existen
+    const firstYear = uniqueYears.value[0]
+    if (firstYear) {
+      const months = monthsByYear(firstYear)
+      if (months.length > 0) {
+        openYear.value = firstYear
+        selectedYear.value = firstYear
+        selectedMonth.value = months[0]
+      }
+    }
   } catch (error) {
     console.error('Error al cargar imágenes', error)
   }
 }
 
-// Años únicos para mostrar
+// Años únicos
 const uniqueYears = computed(() => {
   const years = images.value
     .filter((img) => img.fechaPublicacion)
@@ -88,7 +99,7 @@ const uniqueYears = computed(() => {
   return Array.from(new Set(years)).sort((a, b) => a - b)
 })
 
-// Meses únicos según el año
+// Meses únicos por año
 const monthsByYear = (year) => {
   const months = images.value
     .filter((img) => img.fechaPublicacion === year)
@@ -96,21 +107,22 @@ const monthsByYear = (year) => {
   return Array.from(new Set(months)).sort()
 }
 
-// Mostrar imágenes solo si hay mes y año seleccionado
+// Imágenes filtradas
 const filteredImages = computed(() => {
   if (!selectedYear.value || !selectedMonth.value) return []
   return images.value.filter(
     (img) =>
-      img.fechaPublicacion === selectedYear.value && img.mesPublicacion === selectedMonth.value,
+      img.fechaPublicacion === selectedYear.value &&
+      img.mesPublicacion === selectedMonth.value
   )
 })
 
-// Cuando le picas al año, solo se expande su lista de meses
+// Mostrar/ocultar meses
 const toggleYear = (year) => {
   openYear.value = openYear.value === year ? null : year
 }
 
-// Cuando eliges un mes, ahora sí cambia el contenido mostrado
+// Selección manual de mes
 const selectMonth = (year, month) => {
   selectedYear.value = year
   selectedMonth.value = month
@@ -118,6 +130,7 @@ const selectMonth = (year, month) => {
 
 onMounted(fetchImages)
 </script>
+
 
 <style scoped>
 .projects-content {

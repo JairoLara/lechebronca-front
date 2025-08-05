@@ -39,8 +39,11 @@ onMounted(fetchComments)
 
       <p v-if="comments.length === 0">No hay comentarios aún.</p>
       <ul v-else>
-          <p class="com" v-for="(c, i) in comments" :key="i">{{ c.content }}</p>
-        </ul>
+  <li class="comentario" v-for="(c, i) in comments" :key="i">
+    <span class="icono">👤</span>
+    <p class="com">{{ c.content }}</p>
+  </li>
+</ul>
         <form @submit.prevent="enviarComentario">
           <input
             v-model="newComment"
@@ -55,20 +58,33 @@ onMounted(fetchComments)
 
 <style scoped>
 .comentarios {
+    display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  width: 90%;
+  
   background: none;
  font-family: 'Chicago', 'Courier New', monospace;
 
+
 }
 
+.icono {
+  font-size: 1.3rem;
+  margin-right: 10px;
+  margin-top: 3px;
+}
+
+
 .com{
-  background-color: #ECE9D8;
-  padding: 5px;
+   background-color: #ECE9D8;
+  padding: 5px 10px;
   border: 2px solid #0050EE;
-  margin-bottom: 10px;
   border-radius: 5px;
   font-size: 0.8rem;
-  width: 90%;
-  margin-left: 10%;}
+  flex: 1;
+  word-break: break-word;
+}
 
 form {
   display: flex;
@@ -82,7 +98,7 @@ form {
   font-family: inherit;
   border: 2px solid #707070;
   outline: none;
-  height: 100px;
+  height: 70px;
 }
 
 .btn {
@@ -114,7 +130,7 @@ ul {
   }
 
   .com{
-    background-color: bisque;
+    background-color: rgb(130, 79, 17);
     padding: 10px;
     width: 7rem;
     border: 4px solid #0050EE;

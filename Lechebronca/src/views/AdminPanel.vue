@@ -1,7 +1,6 @@
 <template>
   <FoldersNavbar/>
   <RetroWindow>
-    <button @click="cerrarSesion">Cerrar sesión</button>
     <div class="projects-content">
       <div class="projects-window">
         <div class="window-title-bar">
@@ -47,7 +46,7 @@
                 <router-link :to="`/project/${img.id}`">
                   <img :src="backendUrl + img.filepath" alt="Imagen" width="100" />
                 </router-link>
-                <button @click="eliminarProyecto(img.id)" class="btn-eliminar">Eliminar</button>
+                <button @click="eliminarProyecto(img.id)" class="btn-eliminar"><img style="width: 60px; height: auto;" src="@/assets/trashicon.png" alt=""></button>
               </li>
             </ul>
           </div>
@@ -55,6 +54,7 @@
       </div>
     </div>
   </RetroWindow>
+  <button class="CS" @click="cerrarSesion">Cerrar sesión</button>
 </template>
 
 <script setup>
@@ -125,6 +125,24 @@ onMounted(fetchImages)
 </script>
 
 <style scoped>
+.CS{
+  position: fixed;
+  top: 1%;
+  right: 3%;
+  background: linear-gradient(to bottom, #5995f7, #2c5fc5);
+border: 1px solid #123a96;
+border-radius: 2px;
+color: white;
+padding: 10px;
+box-shadow: inset 1px 1px 1px #ffffff88, inset -1px -1px 1px #0004;
+cursor: pointer;
+}
+
+@media (max-width: 880px) {
+  .CS{
+    visibility: hidden;
+  }
+}
 .projects-content {
   padding: 1rem;
 }
@@ -144,17 +162,11 @@ onMounted(fetchImages)
 }
 
 .btn-eliminar {
-  margin-top: 8px;
-  background-color: #ff4d4d;
-  color: white;
+  background-color: white;
   border: none;
-  padding: 6px 12px;
   border-radius: 4px;
   cursor: pointer;
   font-family: 'agency fb', sans-serif;
-}
-.btn-eliminar:hover {
-  background-color: #cc0000;
 }
 
 .window-title-bar {

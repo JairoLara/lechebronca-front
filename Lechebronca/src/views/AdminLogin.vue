@@ -11,6 +11,7 @@
       <p class="mensaje">{{ mensaje }}</p>
     </div>
   </div>
+  <button class="regresar" @click="$router.go(-1)">Volver</button>
 </template>
 
 <script>
@@ -50,6 +51,19 @@ export default {
 </script>
 
 <style scoped>
+.regresar{
+  position: fixed;
+  top: 1%;
+  right: 3%;
+  background: linear-gradient(to bottom, #ffffff, #121416);
+border: 1px solid #123a96;
+border-radius: 2px;
+color: white;
+padding: 10px;
+box-shadow: inset 1px 1px 1px #ffffff88, inset -1px -1px 1px #0004;
+cursor: pointer;
+}
+
 .contenedor-prin {
   height: 100vh;
   background-image: url('@/assets/pass_img.png');

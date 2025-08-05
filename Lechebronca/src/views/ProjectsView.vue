@@ -147,7 +147,7 @@ onMounted(fetchImages)
 .window-controls {
   position: absolute;
   right: 10px;
-  top: 5px;
+  top: -2px;
   display: flex;
 }
 
@@ -159,7 +159,6 @@ onMounted(fetchImages)
   background: linear-gradient(to bottom, #cca8a8, #ff0000, #a52121);
   color: white;
   border: white 1px solid;
-  padding: 0.5rem;
   margin: 2px;
   cursor: pointer;
   font-size: 12px;

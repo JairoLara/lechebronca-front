@@ -8,11 +8,9 @@
       <div class="tabs">
         <RouterLink to="/"><div class="tab" :class="{ active: activeTab === 0 }" @click="activeTab = 0"><img src="@/assets/carpeta.png" />Bienvenida</div></RouterLink>
         <RouterLink to="/admin"><div class="tab" :class="{ active: activeTab === 1 }" @click="activeTab = 1"><img src="@/assets/carpeta.png" />Videos</div></RouterLink>
-        <RouterLink to="/admin"><div class="tab" :class="{ active: activeTab === 2 }" @click="activeTab = 2"><img src="@/assets/carpeta.png" />Recursos</div></RouterLink>
         <RouterLink to="/admin"><div class="tab" :class="{ active: activeTab === 3 }" @click="activeTab = 3"><img src="@/assets/carpeta.png" />F.A.Q.</div></RouterLink>
         <RouterLink to="/blog"><div class="tab" :class="{ active: activeTab === 4 }" @click="activeTab = 4"><img src="@/assets/carpeta.png" />Blog</div></RouterLink>
-        <RouterLink to="/projects"><div class="tab" :class="{ active: activeTab === 5 }" @click="activeTab = 5"><img src="@/assets/carpeta.png" />Projectos</div></RouterLink>
-        <RouterLink to="/admin"><div class="tab" :class="{ active: activeTab === 6 }" @click="activeTab = 6"><img class="admic" src="@/assets/adminic.png" />Administracion</div></RouterLink>
+        <RouterLink to="/projects"><div class="tab" :class="{ active: activeTab === 5 }" @click="activeTab = 5"><img src="@/assets/carpeta.png" />Proyectos</div></RouterLink>
       </div>
 
       <div class="clock">
@@ -151,14 +149,15 @@ export default {
   position: fixed;
   bottom: 70px;
   right: 20px;
-  background: #245edb;
+  background: linear-gradient(to bottom, #5995f7, #2c5fc5);
   color: white;
-  border: none;
+  border-radius: 2px;
+  border: 1px solid #123a96;
   padding: 8px 12px;
   font-family: Tahoma, sans-serif;
   font-size: 13px;
   border-radius: 4px;
-  box-shadow: 1px 1px 4px #0005;
+  box-shadow: inset 1px 1px 1px #ffffff88, inset -1px -1px 1px #0004;
   cursor: pointer;
   z-index: 1100;
 }

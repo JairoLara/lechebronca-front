@@ -20,18 +20,15 @@ import { RouterLink } from 'vue-router'
 
 // Ruta a tu imagen de carpeta
 import folderIcon from '@/assets/carpeta.png'
-import adminIcon from '@/assets/adminic.png'
 
 const activeTab = ref(0)
 
 const tabs = [
   { label: 'Bienvenida', route: '/', icon: folderIcon },
   { label: 'Videos', route: '/admin', icon: folderIcon },
-  { label: 'Recursos!', route: '/admin', icon: folderIcon },
   { label: 'F.A.Q.', route: '/admin', icon: folderIcon },
   { label: 'Blog', route: '/blog', icon: folderIcon },
-  { label: 'Projectos', route: '/projects', icon: folderIcon },
-  { label: 'Administración', route: '/admin', icon: adminIcon }
+  { label: 'Proyectos', route: '/projects', icon: folderIcon }
 ]
 </script>
 

@@ -37,6 +37,7 @@
                 {{ year }}
               </li>
             </ul>
+            <p style="text-align: center;"><RouterLink to="/admin/articles">Agregar nuevos articulos.</RouterLink></p>
           </div>
 
           <div class="projects">

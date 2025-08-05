@@ -165,4 +165,47 @@ export default {
 .retro-button:hover {
   background-color: #a8a8a8;
 }
+@media (max-width: 880px) {
+  .upload-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    width: 95%;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .retro-title {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 22px;
+  }
+
+  .retro-label {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .retro-label span {
+    margin-bottom: 5px;
+    font-size: 14px;
+  }
+
+  .retro-input {
+    font-size: 14px;
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .retro-button {
+    grid-column: 1 / -1;
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+  }
+}
+
+
 </style>

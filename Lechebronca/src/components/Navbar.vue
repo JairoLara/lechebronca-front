@@ -7,8 +7,8 @@
 
       <div class="tabs">
         <RouterLink to="/"><div class="tab" :class="{ active: activeTab === 0 }" @click="activeTab = 0"><img src="@/assets/carpeta.png" />Bienvenida</div></RouterLink>
-        <RouterLink to="/admin"><div class="tab" :class="{ active: activeTab === 1 }" @click="activeTab = 1"><img src="@/assets/carpeta.png" />Videos</div></RouterLink>
-        <RouterLink to="/admin"><div class="tab" :class="{ active: activeTab === 3 }" @click="activeTab = 3"><img src="@/assets/carpeta.png" />F.A.Q.</div></RouterLink>
+        <RouterLink to="/underconstruction"><div class="tab" :class="{ active: activeTab === 1 }" @click="activeTab = 1"><img src="@/assets/carpeta.png" />Videos</div></RouterLink>
+        <RouterLink to="/underconstruction"><div class="tab" :class="{ active: activeTab === 3 }" @click="activeTab = 3"><img src="@/assets/carpeta.png" />F.A.Q.</div></RouterLink>
         <RouterLink to="/blog"><div class="tab" :class="{ active: activeTab === 4 }" @click="activeTab = 4"><img src="@/assets/carpeta.png" />Blog</div></RouterLink>
         <RouterLink to="/projects"><div class="tab" :class="{ active: activeTab === 5 }" @click="activeTab = 5"><img src="@/assets/carpeta.png" />Proyectos</div></RouterLink>
       </div>

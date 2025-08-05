@@ -25,8 +25,8 @@ const activeTab = ref(0)
 
 const tabs = [
   { label: 'Bienvenida', route: '/', icon: folderIcon },
-  { label: 'Videos', route: '/admin', icon: folderIcon },
-  { label: 'F.A.Q.', route: '/admin', icon: folderIcon },
+  { label: 'Videos', route: '/underconstruction', icon: folderIcon },
+  { label: 'F.A.Q.', route: '/underconstruction', icon: folderIcon },
   { label: 'Blog', route: '/blog', icon: folderIcon },
   { label: 'Proyectos', route: '/projects', icon: folderIcon }
 ]
